@@ -7,7 +7,6 @@ export default class ModuleCore {
 	#UUID;
 
 	#outputFn;
-	#ouputCallback;
 	#commandCallbacks = new Map( ); /// command name -> callback function
 	#changeCallbacks = new Map( );
 
