@@ -79,13 +79,28 @@ export default class ModuleCore {
 		}
 	}
 
+	setOnChange ( change, callback ) {
+		if ( !this.#changeCallbacks.has( change ) ) {
+			this.#changeCallbacks.set( change, [ ] );
+		}
+
+		this.#changeCallbacks.get( change ).push( callback );
+	}
+
+	onChange ( change, data ) {
+		if ( this.#changeCallbacks.has( change ) ) {
+			const callbacks = this.#changeCallbacks.get( change );
+			callbacks.forEach( callback => callback( data ) );
+		}
+	}
+
 	/// overload in children
 	getState ( ) {
 		return { };
 	}
 
 	/// overload in children
-	setState ( stateData ) {
+	setState ( state ) {
 		return;
 	}
 }

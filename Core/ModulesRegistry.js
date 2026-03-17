@@ -14,8 +14,10 @@ export default class ModulesRegistry extends ModuleCore {
 	constructor ( outputFn ) {
 		console.log( `ModulesRegistry - constructor` );
 
-		const uuid = "00000000-0000-0000-0000-000000000000";
-		super ( uuid, "ModulesRegistry" );
+		const UUID = "00000000-0000-0000-0000-000000000000";
+		super ( UUID, "ModulesRegistry" );
+
+		this.#modules.set( UUID, this );
 
 		this.#outputFn = outputFn;
 		this.setOutputFn( outputFn );
@@ -33,6 +35,7 @@ export default class ModulesRegistry extends ModuleCore {
 
 	onAddModule ( data ) {
 		console.log( `ModulesRegistry - onAddModule` );
+
 		const { type, UUID, ...moduleData } = data;
 		console.log( type, UUID, moduleData );
 
@@ -41,6 +44,10 @@ export default class ModulesRegistry extends ModuleCore {
 
 	onRemoveModule ( data ) {
 		console.log( `ModulesRegistry - onRemoveModule` );
+
+		const { UUID } = data;
+		console.log( UUID );
+
 
 	}
 
@@ -57,7 +64,24 @@ export default class ModulesRegistry extends ModuleCore {
 			this.output( commands.addModule, { type, UUID } );
 		}
 
-		
+		// this.onChange( 'addModule', module );
+	}
+
+	removeModule ( UUID, sync = false ) {
+		console.log( `ModulesRegistry - removeModule` );
+
+		const module = this.#modules.get( UUID );
+		if ( module !== undefined ) {
+
+			// this.onChange( 'removeModule', module );
+
+			module.delete( );
+			this.#modules.delete( UUID );
+
+			if ( sync ) {
+				this.output( commands.removeModule, { UUID } );
+			}
+		}
 	}
 
 	get modules ( ) {
@@ -68,4 +92,28 @@ export default class ModulesRegistry extends ModuleCore {
 		return [ ...this.#modules.keys( ) ];
 	}
 
+	getModule ( moduleUUID ) {
+		console.log( `ModulesRegistry - getModule ${ moduleUUID }` );
+
+		return this.#modules.get( moduleUUID );
+	}
+
+	getState ( ) {
+		const modulesData = [];
+		for ( const [ UUID, module ] of this.#modules ) {
+			if ( module.type == "ModulesRegistry" ) 
+				continue;
+
+			modulesData.push( { UUID, type: module.type } );
+		}
+
+		return { modulesData }
+	}
+
+	setState ( state ) {
+		for ( const moduleData of state.modulesData ) {
+			const { UUID, type } = moduleData;
+			this.addModule( type, UUID );
+		}
+	}
 }
