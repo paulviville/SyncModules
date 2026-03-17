@@ -103,4 +103,9 @@ export default class ModuleCore {
 	setState ( state ) {
 		return;
 	}
+
+	outputState ( ) {
+		const state = this.getState( );
+		return this.encode( commands.setState, state );
+	}
 }
