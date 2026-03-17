@@ -17,7 +17,7 @@ export default class ModuleCore {
 		this.#UUID = UUID;
 
 		this.setOnCommand( commands.setState, ( stateData ) => {
-			
+			this.setState( stateData );
 		} );
 	}
 
