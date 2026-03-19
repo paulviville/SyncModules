@@ -59,7 +59,7 @@ export default class TransformModule extends ModuleCore {
 		return { transform: this.transform };
 	}
 
-	setState ( ) {
+	setState ( state ) {
 		this.updateTransform( state.transform );
 	}
 }
