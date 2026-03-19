@@ -1,19 +1,20 @@
 import ModuleCore from "./Core/ModuleCore.js";
 
-const commands = {
-	setState: "SET_STATE",
-	updateValue: "UPDATE_VALUE",
-}
-
 export default class ScalarModule extends ModuleCore {
+	static type = "ScalarModule";
+	static commands = {
+		...super.commands,
+		updateValue: "UPDATE_VALUE",
+	}
+
 	#value = 0;
 
 	constructor ( UUID ) {
 		console.log( `ScalarModule - constructor` );
 
-		super( UUID, "ScalarModule" );
+		super( UUID );
 		
-		this.setOnCommand( commands.updateValue, ( data ) => this.onUpdateValue( data ) );
+		this.setOnCommand( this.commands.updateValue, ( data ) => this.onUpdateValue( data ) );
 	}
 
 	onUpdateValue ( data ) {
@@ -25,13 +26,12 @@ export default class ScalarModule extends ModuleCore {
 
 	updateValue ( value, sync = false ) {
 		console.log( `ScalarModule - updateValue` );
-		console.log( value );
 
 		this.#value = value;
-		this.onChange( "updateValue", value );
+		this.onChange( this.commands.updateValue, value );
 
 		if ( sync ) {
-			this.output( commands.updateValue, { value } );
+			this.output( this.commands.updateValue, { value } );
 		}
 	} 
 

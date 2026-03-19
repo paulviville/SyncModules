@@ -1,22 +1,21 @@
-const commands = {
-	setState: "SET_STATE",
-}
-
 export default class ModuleCore {
-	#type;
+	static type = "ModuleCore";
+	static commands = {
+		setState: "SET_STATE",
+	}
+
 	#UUID;
 
 	#outputFn;
 	#commandCallbacks = new Map( ); /// command name -> callback function
 	#changeCallbacks = new Map( );
 
-	constructor ( UUID = crypto.randomUUID( ), type = "ModuleCore" ) {
-		console.log( `ModuleCore - constructor - ${ UUID } ${ type }` );
+	constructor ( UUID = crypto.randomUUID( ) ) {
+		console.log( `ModuleCore - constructor - ${ UUID }` );
 
-		this.#type = type;
 		this.#UUID = UUID;
 
-		this.setOnCommand( commands.setState, ( stateData ) => {
+		this.setOnCommand( this.commands.setState, ( stateData ) => {
 			this.setState( stateData );
 		} );
 	}
@@ -26,7 +25,11 @@ export default class ModuleCore {
 	}
 
 	get type ( ) {
-		return this.#type;
+		return this.constructor.type;
+	}
+
+	get commands ( ) {
+		return Object.freeze( this.constructor.commands );
 	}
 
 	setOutputFn ( outputFn ) {
@@ -75,7 +78,7 @@ export default class ModuleCore {
 			const callbacks = this.#commandCallbacks.get( command );
 			callbacks.forEach( callback => callback( data ) );
 		} else {
-			console.warn( `${ this.#type } - ${ this.#UUID }  - has no handler for ${ command }`);
+			console.warn( `${ this.type } - ${ this.#UUID }  - has no handler for ${ command }`);
 		}
 	}
 
@@ -106,6 +109,6 @@ export default class ModuleCore {
 
 	outputState ( ) {
 		const state = this.getState( );
-		return this.encode( commands.setState, state );
+		return this.encode( this.commands.setState, state );
 	}
 }

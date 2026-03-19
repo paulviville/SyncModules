@@ -1,19 +1,20 @@
 import ModuleCore from "./Core/ModuleCore.js";
 
-const commands = {
-	setState: "SET_STATE",
-	updateVector: "UPDATE_VECTOR",
-}
-
 export default class Vector3Module extends ModuleCore {
+	static type = "Vector3Module";
+	static commands = {
+		...super.commands,
+		updateVector: "UPDATE_VECTOR",
+	}
+
 	#vector = [0, 0, 0];
 	
 	constructor ( UUID ) {
 		console.log( `Vector3Module - constructor` );
 
-		super( UUID, "Vector3Module" );
+		super( UUID );
 		
-		this.setOnCommand( commands.updateVector, ( data ) => this.onUpdateVector( data ) );
+		this.setOnCommand( this.commands.updateVector, ( data ) => this.onUpdateVector( data ) );
 	}
 
 	onUpdateVector ( data ) {
@@ -26,15 +27,11 @@ export default class Vector3Module extends ModuleCore {
 	updateVector ( vector, sync = false ) {
 		console.log( `Vector3Module - updateVector` );
 
-		this.#vector[ 0 ] = vector[ 0 ] || 0;
-		this.#vector[ 1 ] = vector[ 1 ] || 0;
-		this.#vector[ 2 ] = vector[ 2 ] || 0;
-
-		this.onChange( "updateVector", vector );
-
+		this.#vector.forEach( ( _, i ) => this.#vector[ i ] = vector[ i ] || 0 );
+		this.onChange( this.commands.updateVector, this.vector );
 
 		if ( sync ) {
-			this.output( commands.updateVector, { vector } );
+			this.output( this.commands.updateVector, { vector: this.vector } );
 		}
 	}
 
@@ -47,8 +44,6 @@ export default class Vector3Module extends ModuleCore {
 	}
 
 	setState ( state ) {
-		console.log( `Vector3Module - setState` );
-		
-		this.updateValue( state.vector );
+		this.updateVector( state.vector );
 	}
 }

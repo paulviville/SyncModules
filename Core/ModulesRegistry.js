@@ -1,13 +1,15 @@
 import ModuleCore from "./ModuleCore.js";
 import ModuleTypes from "./ModuleTypes.js";
 
-const commands = {
-	setState: "SET_STATE",
-	addModule: "ADD_MODULE",
-	removeModule: "REMOVE_MODULE",
-}
 
 export default class ModulesRegistry extends ModuleCore {
+	static type = "ModulesRegistry";
+	static commands = {
+		...super.commands,
+		addModule: "ADD_MODULE",
+		removeModule: "REMOVE_MODULE",
+	}
+
 	#modules = new Map( );
 	#outputFn;
 
@@ -15,15 +17,14 @@ export default class ModulesRegistry extends ModuleCore {
 		console.log( `ModulesRegistry - constructor` );
 
 		const UUID = "00000000-0000-0000-0000-000000000000";
-		super ( UUID, "ModulesRegistry" );
+		super ( UUID );
 
 		this.#modules.set( UUID, this );
 
-		this.#outputFn = outputFn;
 		this.setOutputFn( outputFn );
 
-		this.setOnCommand( commands.addModule, ( data ) => this.onAddModule( data ) );
-		this.setOnCommand( commands.removeModule, ( data ) => this.onRemoveModule( data ) );
+		this.setOnCommand( this.commands.addModule, ( data ) => this.onAddModule( data ) );
+		this.setOnCommand( this.commands.removeModule, ( data ) => this.onRemoveModule( data ) );
 	}
 	
 	setOutputFn( outputFn ) {
@@ -37,33 +38,29 @@ export default class ModulesRegistry extends ModuleCore {
 		console.log( `ModulesRegistry - onAddModule` );
 
 		const { type, UUID, ...moduleData } = data;
-		console.log( type, UUID, moduleData );
-
-		this.addModule( type, UUID, false );
+		this.addModule( type, UUID );
 	}
 
 	onRemoveModule ( data ) {
 		console.log( `ModulesRegistry - onRemoveModule` );
 
 		const { UUID } = data;
-		console.log( UUID );
-
-
+		this.removeModule( UUID )
 	}
 
-	addModule ( type, UUID, sync = false ) {
+	addModule ( type, UUID, sync = false ) { /// add change = true parameter for views & other to enable/disable onChange calls
 		console.log( `ModulesRegistry - addModule` );
 
-		const constructor = ModuleTypes[ type ];
+		const constructor = ModuleTypes[ type ] || ModuleCore;
 		const module = new constructor( UUID );
 		module.setOutputFn( this.#outputFn );
 		this.#modules.set( module.UUID, module );
 
 		if ( sync ) {
-			this.output( commands.addModule, { type, UUID } );
+			this.output( this.commands.addModule, { type, UUID } );
 		}
 
-		// this.onChange( 'addModule', module );
+		this.onChange( this.commands.addModule, module );
 	}
 
 	removeModule ( UUID, sync = false ) {
@@ -72,13 +69,13 @@ export default class ModulesRegistry extends ModuleCore {
 		const module = this.#modules.get( UUID );
 		if ( module !== undefined ) {
 
-			// this.onChange( 'removeModule', module );
+			this.onChange( this.commands.removeModule, module );
 
 			module.delete( );
 			this.#modules.delete( UUID );
 
 			if ( sync ) {
-				this.output( commands.removeModule, { UUID } );
+				this.output( this.commands.removeModule, { UUID } );
 			}
 		}
 	}
@@ -100,7 +97,7 @@ export default class ModulesRegistry extends ModuleCore {
 	getState ( ) {
 		const modulesData = [];
 		for ( const [ UUID, module ] of this.#modules ) {
-			if ( module.type == "ModulesRegistry" ) 
+			if ( module.type == this.type ) 
 				continue;
 
 			modulesData.push( { UUID, type: module.type } );
