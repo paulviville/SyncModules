@@ -30,7 +30,7 @@ export default class Vector3Module extends ModuleCore {
 		this.#vector[ 1 ] = vector[ 1 ] || 0;
 		this.#vector[ 2 ] = vector[ 2 ] || 0;
 
-		this.onChange( "updateValue", value );
+		this.onChange( "updateVector", vector );
 
 
 		if ( sync ) {
