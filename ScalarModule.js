@@ -1,4 +1,4 @@
-import ModuleCore from "../Core/ModuleCore.js";
+import ModuleCore from "./Core/ModuleCore.js";
 
 const commands = {
 	setState: "SET_STATE",
@@ -13,7 +13,7 @@ export default class ScalarModule extends ModuleCore {
 
 		super( UUID, "ScalarModule" );
 		
-		this.setOnCommand( commands.updateValue );
+		this.setOnCommand( commands.updateValue, ( data ) => this.onUpdateValue( data ) );
 	}
 
 	onUpdateValue ( data ) {
