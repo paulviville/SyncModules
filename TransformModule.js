@@ -5,7 +5,7 @@ export default class TransformModule extends ModuleCore {
 	static commands = {
 		...super.commands,
 		updateTransform: "UPDATE_TRANSFORM",
-	}
+	};
 
 	#translation = [ 0, 0, 0 ]; // vec3
 	#rotation = [ 0, 0, 0, 1 ]; // quat
@@ -43,7 +43,7 @@ export default class TransformModule extends ModuleCore {
 		this.onChange( this.commands.updateTransform, this.transform );
 
 		if ( sync ) {
-			this.output( this.commands.updateVector, { transform: this.transform } );
+			this.output( this.commands.updateTransform, { transform: this.transform } );
 		}
 	}
 
