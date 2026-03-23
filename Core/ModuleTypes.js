@@ -4,6 +4,7 @@ import Vector3Module from "../Vector3Module.js"
 import TransformModule from "../TransformModule.js"
 import PrimitiveModule from "../PrimitiveModule.js"
 import LineModule from "../LineModule.js"
+import CameraModule from "../CameraModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -12,6 +13,7 @@ const ModuleTypes = {
 	[ TransformModule.type ]: TransformModule,
 	[ PrimitiveModule.type ]: PrimitiveModule,
 	[ LineModule.type ]: LineModule,
+	[ CameraModule.type ]: CameraModule,
 };
 
 Object.freeze( ModuleTypes );

@@ -20,7 +20,9 @@ export default class PrimitiveModule extends TransformModule {
 
 		super( UUID );
 
-		this.setOnCommand( this.commands.updatePrimitive, ( data ) => this.onUpdatePrimitive( data ) )
+		this.setOnCommand( this.commands.updatePrimitive,
+			( data ) => this.onUpdatePrimitive( data )
+		);
 	}
 
 	get primitive ( ) {
@@ -52,13 +54,13 @@ export default class PrimitiveModule extends TransformModule {
 
 	getState ( ) {
 		return {
-			transform: this.transform,
+			...super.getState( ),
 			primitive: this.primitive,
 		};
 	}
 
 	setState ( state ) {
-		this.updateTransform( state.transform );
+		super.setState( state );
 		this.updatePrimitive( state.primitive );
 	}
 }

@@ -14,7 +14,9 @@ export default class ScalarModule extends ModuleCore {
 
 		super( UUID );
 		
-		this.setOnCommand( this.commands.updateValue, ( data ) => this.onUpdateValue( data ) );
+		this.setOnCommand( this.commands.updateValue, 
+			( data ) => this.onUpdateValue( data )
+		);
 	}
 
 	onUpdateValue ( data ) {
