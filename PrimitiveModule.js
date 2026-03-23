@@ -35,7 +35,7 @@ export default class PrimitiveModule extends TransformModule {
 		console.log( `PrimitiveModule - onUpdatePrimitive` );
 
 		const { primitive } = data;
-		updatePrimitive( primitive );
+		this.updatePrimitive( primitive );
 	}
 
 	updatePrimitive ( primitive, sync = false ) {
