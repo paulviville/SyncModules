@@ -15,6 +15,8 @@ export default class LineModule extends ModuleCore {
 		console.log( `LineModule - constructor` );
 
 		super( UUID );
+
+		this.setOnCommand( this.commands.updateLine, ( data ) => this.onUpdateLine( data ) );
 	}
 
 	onUpdateLine ( data ) {
