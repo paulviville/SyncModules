@@ -9,7 +9,7 @@ export default class TransformModule extends ModuleCore {
 
 	#translation = [ 0, 0, 0 ]; // vec3
 	#rotation = [ 0, 0, 0, 1 ]; // quat
-	#scale = [ 1, 1, 1]; // vec3
+	#scale = [ 1, 1, 1 ]; // vec3
 
 	constructor ( UUID ) {
 		console.log( `TransformModule - constructor` );

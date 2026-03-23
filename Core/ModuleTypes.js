@@ -3,6 +3,7 @@ import ScalarModule from "../ScalarModule.js"
 import Vector3Module from "../Vector3Module.js"
 import TransformModule from "../TransformModule.js"
 import PrimitiveModule from "../PrimitiveModule.js"
+import LineModule from "../LineModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -10,6 +11,7 @@ const ModuleTypes = {
 	[ Vector3Module.type ]: Vector3Module,
 	[ TransformModule.type ]: TransformModule,
 	[ PrimitiveModule.type ]: PrimitiveModule,
+	[ LineModule.type ]: LineModule,
 };
 
 Object.freeze( ModuleTypes );

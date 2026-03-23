@@ -5,7 +5,7 @@ export default class ScalarModule extends ModuleCore {
 	static commands = {
 		...super.commands,
 		updateValue: "UPDATE_VALUE",
-	}
+	};
 
 	#value = 0;
 

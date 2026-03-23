@@ -5,7 +5,7 @@ export default class Vector3Module extends ModuleCore {
 	static commands = {
 		...super.commands,
 		updateVector: "UPDATE_VECTOR",
-	}
+	};
 
 	#vector = [0, 0, 0];
 	

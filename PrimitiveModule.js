@@ -6,12 +6,12 @@ export default class PrimitiveModule extends TransformModule {
 	static commands = {
 		...super.commands,
 		updatePrimitive: "UPDATE_PRIMITIVE",
-	}
+	};
 
 	#primitiveTypes = {
 		Sphere: "Sphere",
 		Box: "Box",
-	}
+	};
 
 	#primitive = this.#primitiveTypes.Sphere;
 
