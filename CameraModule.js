@@ -49,6 +49,8 @@ export default class CameraModule extends TransformModule {
 		if ( near ) this.#near = near;
 		if ( far ) this.#far = far;
 
+		this.onChange( this.commands.updateCamera, this.camera );
+
 		if ( sync ) {
 			this.output( this.commands.updateCamera, { camera: this.camera } );
 		}
