@@ -57,6 +57,7 @@ export default class CameraModule extends TransformModule {
 	getState ( ) {
 		return {
 			...super.getState( ),
+			camera: this.camera
 		};
 	}
 
