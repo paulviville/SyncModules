@@ -51,6 +51,10 @@ export default class ModulesRegistry extends ModuleCore {
 	addModule ( type, UUID, sync = false ) { /// add change = true parameter for views & other to enable/disable onChange calls
 		console.log( `ModulesRegistry - addModule` );
 
+		if ( this.#modules.get( UUID ) ) {
+			return;
+		}
+
 		const constructor = ModuleTypes[ type ] || ModuleCore;
 		const module = new constructor( UUID );
 		module.setOutputFn( this.#outputFn );

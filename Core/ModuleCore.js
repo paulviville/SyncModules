@@ -111,4 +111,8 @@ export default class ModuleCore {
 		const state = this.getState( );
 		return this.encode( this.commands.setState, state );
 	}
+
+	delete ( ) {
+		
+	}
 }
