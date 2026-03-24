@@ -20,7 +20,7 @@ export default class CameraModule extends TransformModule {
 		super( UUID );
 
 		this.setOnCommand( this.commands.updateCamera, 
-			( data ) => this.onUpdateCamera( data )
+			( { camera } ) => this.updateCamera( camera )
 		);
 	}
 
@@ -31,13 +31,6 @@ export default class CameraModule extends TransformModule {
 			near: this.#near,
 			far: this.#far,
 		}
-	}
-
-	onUpdateCamera ( data ) {
-		console.log( `CameraModule - onUpdateCamera` );
-
-		const { camera } = data;
-		this.updateCamera( camera );
 	}
 
 	updateCamera ( camera, sync = false ) {

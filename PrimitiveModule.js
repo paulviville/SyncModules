@@ -21,7 +21,7 @@ export default class PrimitiveModule extends TransformModule {
 		super( UUID );
 
 		this.setOnCommand( this.commands.updatePrimitive,
-			( data ) => this.onUpdatePrimitive( data )
+			( { primitive } ) => this.updatePrimitive( primitive )
 		);
 	}
 
@@ -31,13 +31,6 @@ export default class PrimitiveModule extends TransformModule {
 
 	get primitiveTypes ( ) {
 		return { ...this.#primitiveTypes };
-	}
-
-	onUpdatePrimitive ( data ) {
-		console.log( `PrimitiveModule - onUpdatePrimitive` );
-
-		const { primitive } = data;
-		this.updatePrimitive( primitive );
 	}
 
 	updatePrimitive ( primitive, sync = false ) {

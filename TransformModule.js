@@ -16,14 +16,9 @@ export default class TransformModule extends ModuleCore {
 
 		super( UUID );
 		
-		this.setOnCommand( this.commands.updateTransform, ( data ) => this.onUpdateTransform( data ) );
-	}
-
-	onUpdateTransform ( data ) {
-		console.log( `TransformModule - onUpdateTransform` );
-
-		const { transform } = data;
-		this.updateTransform( transform );
+		this.setOnCommand( this.commands.updateTransform, 
+			( { transform } ) => this.updateTransform( transform )
+		);
 	}
 
 	updateTransform ( transform, sync = false ) {

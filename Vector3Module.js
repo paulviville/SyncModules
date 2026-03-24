@@ -14,14 +14,9 @@ export default class Vector3Module extends ModuleCore {
 
 		super( UUID );
 		
-		this.setOnCommand( this.commands.updateVector, ( data ) => this.onUpdateVector( data ) );
-	}
-
-	onUpdateVector ( data ) {
-		console.log( `Vector3Module - onUpdateVector` );
-
-		const { vector } = data;
-		this.updateVector( vector );
+		this.setOnCommand( this.commands.updateVector, 
+			( { vector } ) => this.updateVector( vector )
+		);
 	}
 
 	updateVector ( vector, sync = false ) {
