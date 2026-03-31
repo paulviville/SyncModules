@@ -65,6 +65,8 @@ export default class ModulesRegistry extends ModuleCore {
 		}
 
 		this.onChange( this.commands.addModule, module );
+		
+		return module;
 	}
 
 	removeModule ( UUID, sync = false ) {
