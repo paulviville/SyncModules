@@ -12,7 +12,7 @@ export default class TransformModule extends ModuleCore {
 	#scale = [ 1, 1, 1 ]; // vec3
 
 	constructor ( UUID ) {
-		console.log( `TransformModule - constructor` );
+		// console.log( `TransformModule - constructor` );
 
 		super( UUID );
 		
@@ -22,7 +22,7 @@ export default class TransformModule extends ModuleCore {
 	}
 
 	updateTransform ( transform, sync = false ) {
-		console.log( `TransformModule - updateTransform` );
+		// console.log( `TransformModule - updateTransform` );
 
 		const { translation, rotation, scale } = transform;
 		if ( translation ) {
@@ -44,9 +44,9 @@ export default class TransformModule extends ModuleCore {
 
 	get transform ( ) {
 		return {
-			translation:  [ ...this.#translation ],
-			rotation:  [ ...this.#rotation ],
-			scale:  [ ...this.#scale ],
+			translation: [ ...this.#translation ],
+			rotation: [ ...this.#rotation ],
+			scale: [ ...this.#scale ],
 		}
 	}
 

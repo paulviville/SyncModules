@@ -11,7 +11,7 @@ export default class ModuleCore {
 	#changeCallbacks = new Map( );
 
 	constructor ( UUID = crypto.randomUUID( ) ) {
-		console.log( `ModuleCore - constructor - ${ UUID }` );
+		// console.log( `ModuleCore - constructor - ${ UUID }` );
 
 		this.#UUID = UUID;
 
@@ -33,21 +33,15 @@ export default class ModuleCore {
 	}
 
 	setOutputFn ( outputFn ) {
-		console.log( `ModuleCore - setOutputFn` );
-		// this.#outputFn = outputFn.bind( this, this.#UUID );
 		this.#outputFn = outputFn;
 	}
 
 	input ( payload ) {
-		console.log( `ModuleCore - input` );
-
 		const { command, data } = this.decode( payload );
 		this.onCommand( command, data );
 	}
 
 	output ( command, data ) {
-		console.log( `ModuleCore - output` );
-
 		const payload = this.encode( command, data );
 		this.#outputFn?.( payload );
 	}
@@ -113,6 +107,6 @@ export default class ModuleCore {
 	}
 
 	delete ( ) {
-		
+
 	}
 }
