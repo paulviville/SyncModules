@@ -21,7 +21,7 @@ export default class PointsModule extends ModuleCore {
 		this.setOnCommand( this.commands.addPoints, 
 			( { points } ) => this.addPoints( points )
 		);
-		this.setOnCommand( this.commands.removePoinst, 
+		this.setOnCommand( this.commands.removePoints, 
 			( { points } ) => this.removePoints( points )
 		);
 		this.setOnCommand( this.commands.updatePoints, 
