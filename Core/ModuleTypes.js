@@ -5,6 +5,7 @@ import TransformModule from "../TransformModule.js"
 import PrimitiveModule from "../PrimitiveModule.js"
 import LineModule from "../LineModule.js"
 import CameraModule from "../CameraModule.js"
+import PointsModule from "../PointsModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -14,6 +15,7 @@ const ModuleTypes = {
 	[ PrimitiveModule.type ]: PrimitiveModule,
 	[ LineModule.type ]: LineModule,
 	[ CameraModule.type ]: CameraModule,
+	[ PointsModule.type ]: PointsModule,
 };
 
 Object.freeze( ModuleTypes );
