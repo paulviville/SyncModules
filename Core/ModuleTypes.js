@@ -6,6 +6,9 @@ import PrimitiveModule from "../PrimitiveModule.js"
 import LineModule from "../LineModule.js"
 import CameraModule from "../CameraModule.js"
 import PointsModule from "../PointsModule.js"
+import TextModule from "../TextModule.js"
+import TextLogModule from "../TextListModule.js"
+import FileModule from "../FileModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -16,6 +19,9 @@ const ModuleTypes = {
 	[ LineModule.type ]: LineModule,
 	[ CameraModule.type ]: CameraModule,
 	[ PointsModule.type ]: PointsModule,
+	[ TextModule.type ]: TextModule,
+	[ TextLogModule.type ]: TextLogModule,
+	[ FileModule.type ]: FileModule,
 };
 
 Object.freeze( ModuleTypes );
