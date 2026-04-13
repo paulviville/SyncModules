@@ -7,7 +7,7 @@ import LineModule from "../LineModule.js"
 import CameraModule from "../CameraModule.js"
 import PointsModule from "../PointsModule.js"
 import TextModule from "../TextModule.js"
-import TextLogModule from "../TextListModule.js"
+import TextLogModule from "../TextLogModule.js"
 import FileModule from "../FileModule.js"
 
 const ModuleTypes = {
