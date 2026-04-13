@@ -21,7 +21,7 @@ export default class TextModule extends ModuleCore {
 
 	updateText ( text, sync = false ) {
 		console.log( `TextModule - updateText` );
-
+		console.log( text );
 		this.#text = text
 
 		this.onChange( this.commands.updateText, this.text );

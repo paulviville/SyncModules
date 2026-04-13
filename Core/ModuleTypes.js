@@ -9,6 +9,7 @@ import PointsModule from "../PointsModule.js"
 import TextModule from "../TextModule.js"
 import TextLogModule from "../TextLogModule.js"
 import FileModule from "../FileModule.js"
+import TriggerModule from "../TriggerModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -22,6 +23,7 @@ const ModuleTypes = {
 	[ TextModule.type ]: TextModule,
 	[ TextLogModule.type ]: TextLogModule,
 	[ FileModule.type ]: FileModule,
+	[ TriggerModule.type ]: TriggerModule,
 };
 
 Object.freeze( ModuleTypes );

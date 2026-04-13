@@ -42,14 +42,14 @@ export default class ModulesRegistry extends ModuleCore {
 	}
 
 	onRemoveModule ( data ) {
-		console.log( `ModulesRegistry - onRemoveModule` );
+		// console.log( `ModulesRegistry - onRemoveModule` );
 
 		const { UUID } = data;
 		this.removeModule( UUID )
 	}
 
 	addModule ( type, UUID, sync = false ) { /// add change = true parameter for views & other to enable/disable onChange calls
-		console.log( `ModulesRegistry - addModule` );
+		// console.log( `ModulesRegistry - addModule` );
 
 		if ( this.#modules.get( UUID ) ) {
 			return;
@@ -70,7 +70,7 @@ export default class ModulesRegistry extends ModuleCore {
 	}
 
 	removeModule ( UUID, sync = false ) {
-		console.log( `ModulesRegistry - removeModule` );
+		// console.log( `ModulesRegistry - removeModule` );
 
 		const module = this.#modules.get( UUID );
 		if ( module !== undefined ) {
@@ -95,7 +95,7 @@ export default class ModulesRegistry extends ModuleCore {
 	}
 
 	getModule ( moduleUUID ) {
-		console.log( `ModulesRegistry - getModule ${ moduleUUID }` );
+		// console.log( `ModulesRegistry - getModule ${ moduleUUID }` );
 
 		return this.#modules.get( moduleUUID );
 	}
