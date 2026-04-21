@@ -3,6 +3,8 @@ import FileModule from "./FileModule.js";
 const ROOT_UUID = "00000000-0000-0000-0000-000000000000";
 
 export default class GLTFModule extends FileModule {
+	static rootUUID =  "00000000-0000-0000-0000-000000000000";
+
 	static type = "GLTFModule";
 	static commands = {
 		...super.commands,
@@ -105,7 +107,6 @@ export class SceneGraph {
 	}
 
 	updateNode ( node ) {
-		console.log(node)
 		const { UUID, parent, children, transform } = node;
 		if ( !this.#nodes.has( UUID ) ) {
 			return;
