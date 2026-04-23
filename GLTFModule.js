@@ -30,6 +30,14 @@ export default class GLTFModule extends FileModule {
 		);
 	}
 
+	get nodeUUIDs ( ) {
+		return this.#sceneGraph.nodeUUIDs;
+	}
+
+	nodeTransform ( nodeUUID ) {
+		return this.#sceneGraph.nodeTransform( nodeUUID );
+	}
+
 	setNodes ( nodes, sync = false ) {
 		const nodeUUIDs = [ ];
 		for ( const node of nodes ) {
@@ -53,8 +61,6 @@ export default class GLTFModule extends FileModule {
 			this.#sceneGraph.updateNode( node );
 			nodeUUIDs.push( node.UUID );
 		}
-
-		console.log( nodes );
 
 		const nodesData = this.#sceneGraph.nodesData( nodeUUIDs );
 
