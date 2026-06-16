@@ -39,7 +39,6 @@ export default class GLTFModule extends FileModule {
 	}
 
 	setNodes ( nodes, sync = false ) {
-        console.log( " set nodes ")
 		const nodeUUIDs = [ ];
 		for ( const node of nodes ) {
 			this.#sceneGraph.addNode( node );
@@ -47,7 +46,6 @@ export default class GLTFModule extends FileModule {
 		}
 
 		const nodesData = this.#sceneGraph.nodesData( nodeUUIDs );
-		console.log(nodesData)
 
 		this.onChange( this.commands.setNodes, nodesData );
 
@@ -71,6 +69,10 @@ export default class GLTFModule extends FileModule {
 			this.output( this.commands.updateNodes, { nodes: nodesData } );
 		}
 	}
+
+    get nodes ( ) {
+        return this.#sceneGraph.nodes;
+    }
 
 	getState ( ) {
 		return { 
@@ -98,7 +100,7 @@ export class SceneGraph {
 	}
 
 	addNode ( node ) {
-        console.log("addNode")
+        console.log(node)
 		const { UUID, parent, children, transform } = node;
 		this.#nodes.add( UUID );
 		
@@ -150,8 +152,6 @@ export class SceneGraph {
 	}
 
 	nodeTransform ( nodeUUID ) {
-        console.log(nodeUUID )
-        console.log(this.#transform)
 		const transform = this.#transform.get( nodeUUID );
 
 		return {
