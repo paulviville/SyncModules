@@ -11,6 +11,7 @@ export default class GLTFModule extends FileModule {
 		setSceneGraph: "SET_SCENE_GRAPH",
 		setNodes: "SET_NODES",
 		updateNodes: "UPDATE_NODES",
+		setNodesMap: "SET_NODES_MAP",
 		clear: "CLEAR",
 		/// TODO
 	};
@@ -72,6 +73,7 @@ export default class GLTFModule extends FileModule {
 	}
 
 	getState ( ) {
+		console.log(this.#sceneGraph.nodes )
 		return { 
 			...super.getState( ),
 			nodes: this.#sceneGraph.nodes,
@@ -90,6 +92,7 @@ export class SceneGraph {
 	#parent = new Map( );
 	#children = new Map( );
 	#transform = new Map( );
+	#locked = new Map( );
 
 	constructor ( ) {
 
@@ -110,10 +113,12 @@ export class SceneGraph {
 			rotation: [ ...( transform?.rotation ?? [ 0, 0, 0, 1 ] ) ],
 			scale: [ ...( transform?.scale ?? [ 1, 1, 1 ] ) ],
 		} );
+
+		this.#locked.set( UUID, false );
 	}
 
 	updateNode ( node ) {
-		const { UUID, parent, children, transform } = node;
+		const { UUID, parent, children, transform, locked } = node;
 		if ( !this.#nodes.has( UUID ) ) {
 			return;
 		}
@@ -140,6 +145,10 @@ export class SceneGraph {
 				nodeTransform.scale.forEach( ( _, i ) => nodeTransform.scale[ i ] = scale[ i ] || 1 );
 			}
 		}
+
+		if ( locked ) {
+			this.#locked.set( UUID, locked );
+		}
 	}
 
 	get nodeUUIDs ( ) {
@@ -165,6 +174,10 @@ export class SceneGraph {
 		return [ ...( children ?? [ ] ) ];
 	}
 
+	nodeLocked ( nodeUUID ) {
+		return this.#locked.get( nodeUUID );
+	}
+
 	nodesData ( nodeUUIDs ) {
 		const nodes = [ ];
 
@@ -174,6 +187,7 @@ export class SceneGraph {
 				parent: this.nodeParent( UUID ),
 				children: this.nodeChildren( UUID ),
 				transform: this.nodeTransform( UUID ),
+				locked: this.nodeLocked( UUID ),
 			} );
 		}
 
@@ -185,11 +199,44 @@ export class SceneGraph {
 		this.#roots.clear( );
 		this.#parent.clear( );
 		this.#children.clear( );
+		this.#locked.clear( );
 	}
 
 	get nodes ( ) {
 		const nodes = this.nodesData( [ ...this.#nodes ] );
 
 		return nodes;
+	}
+
+    #forAllParents ( nodeUUID, func ) {
+		let parentUUID = this.#parent.get( nodeUUID );
+        while( parentUUID != ROOT_UUID ) {
+            func( parentUUID );
+            parentUUID = this.#parent[ parentUUID ];
+        }
+    }
+
+    #forAllChildren ( nodeUUID, func ) {
+        const childrenUUIDs = [ ...this.#children[ nodeUUID ] ];
+        for( let i = 0; i < childrenUUIDs.length; ++i ) {
+            const childUUID = childrenUUIDs[ i ];
+            func( childUUID );
+            childrenUUIDs.push( ...this.#children[ childUUID ] )
+        }
+    }
+
+	lockNode ( nodeUUID ) {
+		this.#locked.set( nodeUUID, true );
+	}
+
+	unlockNode ( nodeUUID ) {
+		this.#locked.set( nodeUUID, false );
+	}
+
+	locked ( nodeUUID ) {
+		let locked = this.#locked.get( nodeUUID );
+		this.#forAllParents( nodeUUID, parentUUID => { locked |= this.#locked.get( parentUUID ) } );
+		this.#forAllChildren( nodeUUID, childUUID => { locked |= this.#locked.get( childUUID ) } );
+		return locked;
 	}
 }

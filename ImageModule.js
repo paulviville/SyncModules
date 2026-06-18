@@ -16,7 +16,7 @@ export default class ImageModule extends TransformModule {
 		super( UUID );
 
 		this.setOnCommand( this.commands.setImage, 
-			( { camera } ) => this.setImage( camera )
+			( { image } ) => this.setImage( image )
 		);
 	}
 
