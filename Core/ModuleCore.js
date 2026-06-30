@@ -53,7 +53,7 @@ export default class ModuleCore {
 	}
 
 	encode ( command, data ) {
-		const payload = { moduleUUID: this.#UUID, command, data };
+		const payload = { moduleUUID: this.#UUID, timestamp: Date.now( ), command, data };
 		/// data -> commandDataEncoder( command, data )
 		return payload;
 	}
