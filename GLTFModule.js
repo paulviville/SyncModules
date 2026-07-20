@@ -30,7 +30,7 @@ export default class GLTFModule extends FileModule {
 			( { nodes } ) => this.updateNodes( nodes )
 		);
 		this.setOnCommand( this.commands.setNodesMap,
-			( { nodesMap } ) => this.updateNodes( nodesMap )
+			( { nodesMap } ) => this.setNodesMap( nodesMap )
 		);
 	}
 
