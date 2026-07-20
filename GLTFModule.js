@@ -45,10 +45,10 @@ export default class GLTFModule extends FileModule {
 	setNodesMap ( nodesMap, sync = false ) {
 		console.log( `GLTFModule - setNodesMap` );
 		console.log( nodesMap )
-		this.onChange( this.commands.nodesMap, nodesMap );
+		this.onChange( this.commands.setNodesMap, nodesMap );
 
 		if ( sync ) {
-			this.output( this.commands.nodesMap, { nodesMap } );
+			this.output( this.commands.setNodesMap, { nodesMap } );
 		}
 	}
 
