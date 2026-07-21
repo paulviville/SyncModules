@@ -17,6 +17,7 @@ export default class GLTFModule extends FileModule {
 	};
 
 	#sceneGraph = new SceneGraph( );
+	#nodesMap = new Map( );
 
 	constructor ( UUID ) {
 		console.log( `GLTFModule - constructor` );
@@ -26,9 +27,11 @@ export default class GLTFModule extends FileModule {
 		this.setOnCommand( this.commands.setNodes,
 			( { nodes } ) => this.setNodes( nodes )
 		);
+
 		this.setOnCommand( this.commands.updateNodes,
 			( { nodes } ) => this.updateNodes( nodes )
 		);
+
 		this.setOnCommand( this.commands.setNodesMap,
 			( { nodesMap } ) => this.setNodesMap( nodesMap )
 		);
@@ -38,6 +41,15 @@ export default class GLTFModule extends FileModule {
 		return this.#sceneGraph.nodeUUIDs;
 	}
 
+	get nodesMap ( ) {
+		const nodesMapData = [ ];
+		for ( const [ nodeId, nodeUUID ] of this.#nodesMap ) {
+			nodesMapData.push( { nodeId, nodeUUID } );
+		}
+		console.log(nodesMapData)
+		return nodesMapData;
+	}
+
 	nodeTransform ( nodeUUID ) {
 		return this.#sceneGraph.nodeTransform( nodeUUID );
 	}
@@ -45,10 +57,15 @@ export default class GLTFModule extends FileModule {
 	setNodesMap ( nodesMap, sync = false ) {
 		console.log( `GLTFModule - setNodesMap` );
 		console.log( nodesMap )
+
+		for ( const { nodeId, nodeUUID } of nodesMap ) {
+			this.#nodesMap.set( parseInt( nodeId ), nodeUUID );
+		}
+
 		this.onChange( this.commands.setNodesMap, nodesMap );
 
 		if ( sync ) {
-			this.output( this.commands.setNodesMap, { nodesMap } );
+			this.output( this.commands.setNodesMap, { nodesMap: nodesMap } );
 		}
 	}
 
@@ -92,12 +109,14 @@ export default class GLTFModule extends FileModule {
 		console.log(this.#sceneGraph.nodes )
 		return { 
 			...super.getState( ),
+			nodesMap: this.nodesMap,
 			nodes: this.#sceneGraph.nodes,
 		};
 	}
 
 	setState ( state ) {
 		super.setState( state );
+        this.setNodesMap( state.nodesMap, false )
         this.setNodes( state.nodes, false )
 	}
 }
