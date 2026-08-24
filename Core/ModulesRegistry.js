@@ -64,7 +64,7 @@ export default class ModulesRegistry extends ModuleCore {
 			this.output( this.commands.addModule, { type, UUID } );
 		}
 
-		this.onChange( this.commands.addModule, module );
+		this.onChange( this.commands.addModule, { type, UUID } );
 		
 		return module;
 	}
@@ -75,7 +75,7 @@ export default class ModulesRegistry extends ModuleCore {
 		const module = this.#modules.get( UUID );
 		if ( module !== undefined ) {
 
-			this.onChange( this.commands.removeModule, module );
+			this.onChange( this.commands.removeModule, { UUID: module.UUID } );
 
 			module.delete( );
 			this.#modules.delete( UUID );
