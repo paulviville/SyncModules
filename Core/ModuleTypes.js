@@ -12,6 +12,7 @@ import FileModule from "../FileModule.js"
 import TriggerModule from "../TriggerModule.js"
 import GLTFModule from "../GLTFModule.js"
 import ImageModule from "../ImageModule.js"
+import Image360Module from "../Image360Module.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -28,6 +29,7 @@ const ModuleTypes = {
 	[ TriggerModule.type ]: TriggerModule,
 	[ GLTFModule.type ]: GLTFModule,
 	[ ImageModule.type ]: ImageModule,
+	[ Image360Module.type ]: Image360Module,
 };
 
 Object.freeze( ModuleTypes );
