@@ -21,9 +21,7 @@ export default class ImageModule extends TransformModule {
 	}
 
 	get image ( ) {
-		return {
-			...this.#image
-		}
+		return this.#image;
 	}
 
 	setImage ( image, sync = false ) {
@@ -31,7 +29,7 @@ export default class ImageModule extends TransformModule {
 
 		this.#image = image;
 
-		this.onChange( this.commands.setImage, this.image );
+		this.onChange( this.commands.setImage, { image: this.image } );
 
 		if ( sync ) {
 			this.output( this.commands.setImage, { image: this.image } );

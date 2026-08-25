@@ -11,6 +11,7 @@ import TextLogModule from "../TextLogModule.js"
 import FileModule from "../FileModule.js"
 import TriggerModule from "../TriggerModule.js"
 import GLTFModule from "../GLTFModule.js"
+import ImageModule from "../ImageModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -26,6 +27,7 @@ const ModuleTypes = {
 	[ FileModule.type ]: FileModule,
 	[ TriggerModule.type ]: TriggerModule,
 	[ GLTFModule.type ]: GLTFModule,
+	[ ImageModule.type ]: ImageModule,
 };
 
 Object.freeze( ModuleTypes );
