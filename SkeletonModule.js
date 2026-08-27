@@ -147,5 +147,7 @@ export default class SkeletonModule extends ModuleCore {
 
 	setState ( state ) {
 		super.setState( state );
+		this.setBones( state.bones );
+		this.setTransforms( state.boneTransforms );
 	}
 }
