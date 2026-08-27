@@ -74,7 +74,7 @@ export default class SkeletonModule extends ModuleCore {
 	///		{ UUID, parent },
 	/// ]
 	setBones ( bones, sync = false ) {
-		console.log( `SkeletonModule - setBones` );
+		// console.log( `SkeletonModule - setBones` );
 
 		for ( const { UUID, parent } of bones ) {
 			this.#bones.add( UUID );
@@ -107,7 +107,7 @@ export default class SkeletonModule extends ModuleCore {
 	/// 	scale: [ x, y, z ],
 	///}
 	setTransforms ( boneTransforms, sync = false ) {
-		console.log( `SkeletonModule - setTransforms` );
+		// console.log( `SkeletonModule - setTransforms` );
 
 		const updatedUUIDs = [ ];
 
@@ -132,9 +132,6 @@ export default class SkeletonModule extends ModuleCore {
 		if ( sync ) {
 			this.output( this.commands.setTransforms, { boneTransforms: this.boneTransforms( updatedUUIDs ) } );
 		}
-
-		console.log( updatedUUIDs )
-		console.log( this.boneTransforms( updatedUUIDs ) )
 	}
 
 	getState ( ) {
