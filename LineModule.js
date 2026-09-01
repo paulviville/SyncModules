@@ -22,7 +22,7 @@ export default class LineModule extends ModuleCore {
 	}
 
 	updateLine ( line, sync = false ) {
-		console.log( `LineModule - updateLine` );
+		// console.log( `LineModule - updateLine` );
 
 		const { origin, end } = line;
 		if ( origin ) {

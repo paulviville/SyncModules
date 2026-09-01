@@ -34,7 +34,7 @@ export default class CameraModule extends TransformModule {
 	}
 
 	updateCamera ( camera, sync = false ) {
-		console.log( `CameraModule - updateCamera` );
+		// console.log( `CameraModule - updateCamera` );
 
 		const { fov, aspect, near, far } = camera;
 		if ( fov ) this.#fov = fov;

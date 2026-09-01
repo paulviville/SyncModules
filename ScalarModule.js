@@ -20,7 +20,7 @@ export default class ScalarModule extends ModuleCore {
 	}
 
 	updateValue ( value, sync = false ) {
-		console.log( `ScalarModule - updateValue` );
+		// console.log( `ScalarModule - updateValue` );
 
 		this.#value = value;
 		this.onChange( this.commands.updateValue, value );

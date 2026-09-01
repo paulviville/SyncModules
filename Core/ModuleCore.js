@@ -1,6 +1,7 @@
 export default class ModuleCore {
 	static type = "ModuleCore";
 	static commands = {
+		any: "ANY",
 		setState: "SET_STATE",
 	}
 
@@ -18,6 +19,10 @@ export default class ModuleCore {
 		this.setOnCommand( this.commands.setState, ( stateData ) => {
 			this.setState( stateData );
 		} );
+
+		// this.setOnChange( this.commands.any, ( data ) => {
+		// 	console.log( data )
+		// } );
 	}
 
 	get UUID ( ) {
@@ -87,6 +92,11 @@ export default class ModuleCore {
 	onChange ( change, data ) {
 		if ( this.#changeCallbacks.has( change ) ) {
 			const callbacks = this.#changeCallbacks.get( change );
+			callbacks.forEach( callback => callback( data ) );
+		}
+
+		if ( this.#changeCallbacks.has( this.commands.any ) ) {
+			const callbacks = this.#changeCallbacks.get( this.commands.any );
 			callbacks.forEach( callback => callback( data ) );
 		}
 	}

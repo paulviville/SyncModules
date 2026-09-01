@@ -20,7 +20,7 @@ export default class FileModule extends ModuleCore {
 	}
 
 	updateFile ( file, sync = false ) {
-		console.log( `FileModule - updateFile` );
+		// console.log( `FileModule - updateFile` );
 		
 		/// delete previous file?
 		this.#file = file;

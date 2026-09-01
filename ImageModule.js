@@ -25,7 +25,7 @@ export default class ImageModule extends TransformModule {
 	}
 
 	setImage ( image, sync = false ) {
-		console.log( `ImageModule - setImage` );
+		// console.log( `ImageModule - setImage` );
 
 		this.#image = image;
 
