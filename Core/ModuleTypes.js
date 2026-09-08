@@ -15,6 +15,7 @@ import ImageModule from "../ImageModule.js"
 import Image360Module from "../Image360Module.js"
 import SwitchModule from "../SwitchModule.js"
 import SkeletonModule from "../SkeletonModule.js"
+import DisplaysModule from "../DisplaysModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -34,6 +35,7 @@ const ModuleTypes = {
 	[ Image360Module.type ]: Image360Module,
 	[ SwitchModule.type ]: SwitchModule,
 	[ SkeletonModule.type ]: SkeletonModule,
+	[ DisplaysModule.type ]: DisplaysModule,
 };
 
 Object.freeze( ModuleTypes );
