@@ -55,7 +55,6 @@ export default class DisplaysModule extends TransformModule {
 			} ),
 		}
 
-		console.log( display );
 		this.#displays.set( display.UUID, display );
 
 		this.onChange( this.commands.addDisplay, display );
@@ -63,16 +62,12 @@ export default class DisplaysModule extends TransformModule {
 		if( sync ) {
 			this.output( this.commands.addDisplay, { display } );
 		}
-
-		console.log( this.#displays )
 	}
 
 	/// displayUUID, matrices: [ { camera, persepective }, ... ]
 	setMatrices ( matrices, sync = false ) {
 		const { projection, view, UUID } = matrices;
 		
-		console.log( matrices )
-
 		const display = this.#displays.get( UUID );
 		if ( display === undefined )
 			return;
