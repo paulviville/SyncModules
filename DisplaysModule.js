@@ -16,7 +16,7 @@ export default class DisplaysModule extends TransformModule {
 			label: < string >,
 			UUID: < uuid >,
 			corners: [ [ <3 * float> ], [ <3 * float> ], [ <3 * float> ], [ <3 * float> ] ],
-			matrix: [ <16 * float> ],
+			matrices: [ <16 * float> ],
 		}
 	*/
 	#displays = new Map( ); /// UUID -> display
@@ -29,6 +29,19 @@ export default class DisplaysModule extends TransformModule {
 		this.setOnCommand( this.commands.addDisplay, 
 			( { display } ) => this.addDisplay( display )
 		);
+
+		this.setOnCommand( this.commands.setMatrices, 
+			( { matrices } ) => this.setMatrices( matrices )
+		);
+	}
+
+	get displays ( ) {
+		const displays = [ ];
+		for ( const [ UUID, display ] of this.#displays ) {
+			displays.push( display );
+		}
+
+		return displays;
 	}
 
 	/// display: { UUID, }
@@ -50,12 +63,26 @@ export default class DisplaysModule extends TransformModule {
 		if( sync ) {
 			this.output( this.commands.addDisplay, { display } );
 		}
+
+		console.log( this.#displays )
 	}
 
 	/// displayUUID, matrices: [ { camera, persepective }, ... ]
 	setMatrices ( matrices, sync = false ) {
 		const { projection, view, UUID } = matrices;
 		
+		console.log( matrices )
+
+		const display = this.#displays.get( UUID );
+		if ( display === undefined )
+			return;
+
+		display.matrices ??= { };
+
+		if ( matrices.view )
+			display.matrices.view = [ ...matrices.view ];
+		if ( matrices.projection )
+			display.matrices.projection = [ ...matrices.projection ];
 
 		this.onChange( this.commands.setMatrices, matrices );
 
