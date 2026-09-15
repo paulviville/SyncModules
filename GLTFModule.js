@@ -55,8 +55,8 @@ export default class GLTFModule extends FileModule {
 	}
 
 	setNodesMap ( nodesMap, sync = false ) {
-		console.log( `GLTFModule - setNodesMap` );
-		console.log( nodesMap )
+		// console.log( `GLTFModule - setNodesMap` );
+		// console.log( nodesMap )
 
 		for ( const { nodeId, nodeUUID } of nodesMap ) {
 			this.#nodesMap.set( parseInt( nodeId ), nodeUUID );
@@ -139,12 +139,18 @@ export class SceneGraph {
 		const { UUID, parent, children, transform } = node;
 		this.#nodes.add( UUID );
 		
-		this.#parent.set( UUID, parent ?? ROOT_UUID );
-		if ( this.#parent.get( UUID ) == ROOT_UUID )
+		if ( this.#parent.get( UUID ) === undefined ) {
+			this.#parent.set( UUID, parent ?? ROOT_UUID );
 			this.#roots.add( UUID ); 
+		}
+		// if ( this.#parent.get( UUID ) == ROOT_UUID )
 
 		this.#children.set( UUID, new Set( children ?? [ ] ) );
-
+		for ( const childUUID of this.#children.get( UUID ) ) {
+			this.#parent.set( childUUID, UUID );
+			this.#roots.delete( childUUID ); 
+		}
+		
 		this.#transform.set( UUID, {
 			translation: [ ...( transform?.translation ?? [ 0, 0, 0 ] ) ],
 			rotation: [ ...( transform?.rotation ?? [ 0, 0, 0, 1 ] ) ],
@@ -227,7 +233,6 @@ export class SceneGraph {
 				locked: this.nodeLocked( UUID ),
 			} );
 		}
-
 		return nodes;
 	}
 
