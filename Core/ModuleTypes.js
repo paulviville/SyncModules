@@ -16,6 +16,8 @@ import Image360Module from "../Image360Module.js"
 import SwitchModule from "../SwitchModule.js"
 import SkeletonModule from "../SkeletonModule.js"
 import DisplaysModule from "../DisplaysModule.js"
+import BezierCurveModule from "../BezierCurveModule.js"
+import BezierPatchModule from "../BezierPatchModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -36,6 +38,8 @@ const ModuleTypes = {
 	[ SwitchModule.type ]: SwitchModule,
 	[ SkeletonModule.type ]: SkeletonModule,
 	[ DisplaysModule.type ]: DisplaysModule,
+	[ BezierCurveModule.type ]: BezierCurveModule,
+	[ BezierPatchModule.type ]: BezierPatchModule,
 };
 
 Object.freeze( ModuleTypes );
