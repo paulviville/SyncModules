@@ -10,10 +10,11 @@ export default class PrimitiveModule extends TransformModule {
 
 	#primitiveTypes = {
 		Sphere: "Sphere",
-		Box: "Box",
+		Cube: "Cube",
 		Cone: "Cone",
 		Cylinder: "Cylinder",
-		Plane: "Plane",
+		Capsule: "Capsule",
+		Quad: "Quad",
 	};
 
 	#primitive = this.#primitiveTypes.Sphere;
