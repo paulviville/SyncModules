@@ -89,10 +89,21 @@ export default class DisplaysModule extends TransformModule {
 	getState ( ) {
 		return {
 			...super.getState( ),
+			displays: this.displays,
 		};
 	}
 
 	setState ( state ) {
 		super.setState( state );
+
+		const { displays } = state;
+		for ( const display of displays ) {
+			this.addDisplay( display );
+			this.setMatrices( { 
+				UUID: display.UUID,
+				projection: display.matrices.projection,
+				view: display.matrices.view,
+			} );
+		}
 	}
 }
