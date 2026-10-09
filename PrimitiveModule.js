@@ -6,6 +6,7 @@ export default class PrimitiveModule extends TransformModule {
 	static commands = {
 		...super.commands,
 		updatePrimitive: "UPDATE_PRIMITIVE",
+		updateColor: "UPDATE_COLOR",
 	};
 
 	#primitiveTypes = {
@@ -18,6 +19,7 @@ export default class PrimitiveModule extends TransformModule {
 	};
 
 	#primitive = this.#primitiveTypes.Sphere;
+	#color = [ 1, 1, 1, 1 ];
 
 	constructor ( UUID ) {
 		console.log( `PrimitiveModule - constructor` );
@@ -27,10 +29,18 @@ export default class PrimitiveModule extends TransformModule {
 		this.setOnCommand( this.commands.updatePrimitive,
 			( { primitive } ) => this.updatePrimitive( primitive )
 		);
+
+		this.setOnCommand( this.commands.updateColor,
+			( { color } ) => this.updateColor( color )
+		);
 	}
 
 	get primitive ( ) {
 		return this.#primitive;
+	}
+
+	get color ( ) {
+		return [ ...this.#color ];
 	}
 
 	get primitiveTypes ( ) {
@@ -49,15 +59,28 @@ export default class PrimitiveModule extends TransformModule {
 		}
 	}
 
+	updateColor ( color, sync = false ) {
+		this.#color.forEach( ( _, i ) => this.#color[ i ] = color[ i ] || 0 );
+		console.log( color.color, this.#color )
+
+		this.onChange( this.commands.updateColor, this.color );
+
+		if ( sync ) {
+			this.output( this.commands.updateColor, { color: this.color } );
+		}
+	}
+
 	getState ( ) {
 		return {
 			...super.getState( ),
 			primitive: this.primitive,
+			color: this.color,
 		};
 	}
 
 	setState ( state ) {
 		super.setState( state );
 		this.updatePrimitive( state.primitive );
+		this.updateColor( state.color );
 	}
 }
