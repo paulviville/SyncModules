@@ -13,15 +13,17 @@ export default class GLTFModule extends FileModule {
 		updateNodes: "UPDATE_NODES",
 		setNodesMap: "SET_NODES_MAP",
 		clear: "CLEAR",
+		lock: "LOCK",
 		/// TODO
 	};
 
 	#sceneGraph = new SceneGraph( );
 	#nodesMap = new Map( );
+	#lock = false; 
 
 	constructor ( UUID ) {
-		console.log( `GLTFModule - constructor` );
-
+		console.log( `GLTFModule - constructor ${ UUID }` );
+		
 		super( UUID );
 
 		this.setOnCommand( this.commands.setNodes,
@@ -55,7 +57,7 @@ export default class GLTFModule extends FileModule {
 	}
 
 	setNodesMap ( nodesMap, sync = false ) {
-		// console.log( `GLTFModule - setNodesMap` );
+		console.log( `GLTFModule - setNodesMap` );
 		// console.log( nodesMap )
 
 		for ( const { nodeId, nodeUUID } of nodesMap ) {
@@ -101,9 +103,23 @@ export default class GLTFModule extends FileModule {
 		}
 	}
 
+	setLock ( lock, sync = false ) {
+		this.#lock = lock;
+
+		this.onChange( this.commands.lock, this.lock );
+
+		if ( sync ) {
+			this.output( this.commands.lock, { lock: this.lock } );
+		}
+	}
+
     get nodes ( ) {
         return this.#sceneGraph.nodes;
     }
+
+	get lock ( ) {
+		return this.#lock;
+	}
 
 	getState ( ) {
 		console.log(this.#sceneGraph.nodes )
@@ -111,6 +127,7 @@ export default class GLTFModule extends FileModule {
 			...super.getState( ),
 			nodesMap: this.nodesMap,
 			nodes: this.#sceneGraph.nodes,
+			lock: this.lock,
 		};
 	}
 
