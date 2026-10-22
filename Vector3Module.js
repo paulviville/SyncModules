@@ -10,8 +10,6 @@ export default class Vector3Module extends ModuleCore {
 	#vector = [0, 0, 0];
 	
 	constructor ( UUID ) {
-		console.log( `Vector3Module - constructor` );
-
 		super( UUID );
 		
 		this.setOnCommand( this.commands.updateVector, 
@@ -20,8 +18,6 @@ export default class Vector3Module extends ModuleCore {
 	}
 
 	updateVector ( vector, sync = false ) {
-		console.log( `Vector3Module - updateVector` );
-
 		this.#vector.forEach( ( _, i ) => this.#vector[ i ] = vector[ i ] || 0 );
 		this.onChange( this.commands.updateVector, this.vector );
 

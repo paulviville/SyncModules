@@ -61,7 +61,6 @@ export default class PrimitiveModule extends TransformModule {
 
 	updateColor ( color, sync = false ) {
 		this.#color.forEach( ( _, i ) => this.#color[ i ] = color[ i ] || 0 );
-		console.log( color.color, this.#color )
 
 		this.onChange( this.commands.updateColor, this.color );
 
