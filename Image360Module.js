@@ -5,7 +5,6 @@ export default class Image360Module extends ImageModule {
 	static type = "Image360Module";
 	static commands = {
 		...super.commands,
-		setImage: "SET_IMAGE",
 	};
 
 	#image; /// file
