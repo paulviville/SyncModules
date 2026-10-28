@@ -16,6 +16,7 @@ export default class TemplateModule extends ModuleCore {
 	/// set the module type
 	static type = "TemplateModule";
 
+	/// inherit parent commands and add your own
 	static commands = {
 		...super.commands,
 		templateCommand: "TEMPLATE_COMMAND",

@@ -1,5 +1,11 @@
 # SyncModules
 
+TemplateModule provides an example of how to add a custom module
+
+
+
+
+
 ##TODO:
 ModuleCore: base class for all synchronization modules
 ModulesRegistry: managers add/remove of modules 

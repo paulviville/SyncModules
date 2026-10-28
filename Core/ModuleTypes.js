@@ -40,6 +40,9 @@ const ModuleTypes = {
 	[ DisplaysModule.type ]: DisplaysModule,
 	[ BezierCurveModule.type ]: BezierCurveModule,
 	[ BezierPatchModule.type ]: BezierPatchModule,
+
+
+	/// add new module with key: [ module.type ]: module constructor
 };
 
 Object.freeze( ModuleTypes );
