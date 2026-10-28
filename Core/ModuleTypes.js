@@ -18,6 +18,9 @@ import SkeletonModule from "../SkeletonModule.js"
 import DisplaysModule from "../DisplaysModule.js"
 import BezierCurveModule from "../BezierCurveModule.js"
 import BezierPatchModule from "../BezierPatchModule.js"
+import LightModule from "../LightModule.js"
+import PointLightModule from "../PointLightModule.js"
+import AmbientLightModule from "../AmbientLightModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -40,6 +43,9 @@ const ModuleTypes = {
 	[ DisplaysModule.type ]: DisplaysModule,
 	[ BezierCurveModule.type ]: BezierCurveModule,
 	[ BezierPatchModule.type ]: BezierPatchModule,
+	// [ LightModule.type ]: LightModule, /// abstract type
+	[ PointLightModule.type ]: PointLightModule,
+	[ AmbientLightModule.type ]: AmbientLightModule,
 
 
 	/// add new module with key: [ module.type ]: module constructor
