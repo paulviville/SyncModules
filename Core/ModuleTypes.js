@@ -21,6 +21,8 @@ import BezierPatchModule from "../BezierPatchModule.js"
 import LightModule from "../LightModule.js"
 import PointLightModule from "../PointLightModule.js"
 import AmbientLightModule from "../AmbientLightModule.js"
+import SpotLightModule from "../SpotLightModule.js"
+import DirectionalLightModule from "../DirectionalLightModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -46,6 +48,8 @@ const ModuleTypes = {
 	// [ LightModule.type ]: LightModule, /// abstract type
 	[ PointLightModule.type ]: PointLightModule,
 	[ AmbientLightModule.type ]: AmbientLightModule,
+	[ SpotLightModule.type ]: SpotLightModule,
+	[ DirectionalLightModule.type ]: DirectionalLightModule,
 
 
 	/// add new module with key: [ module.type ]: module constructor
