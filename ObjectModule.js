@@ -12,13 +12,20 @@ export default class ObjectModule extends TransformModule {
 	};
 
 	#parent = rootUUID;
-	#children = new Set( ); /// child modules UUID
+	#children = new Set( ); /// children modules UUID
 
 	constructor ( UUID ) {
 		console.log( `ObjectModule - constructor` );
 	
 		super( UUID );
 
+		this.setOnCommand( this.commands.addChildren, 
+			( { children } ) => this.addChildren( children ) 
+		);
+
+		this.setOnCommand( this.commands.removeChildren, 
+			( { children } ) => this.removeChildren( children ) 
+		);
 	}
 
 	get children ( ) {
@@ -43,7 +50,6 @@ export default class ObjectModule extends TransformModule {
 		const addedChildren = [ ];
 
 		for ( const child of children ) {
-			console.log( child );
 			if ( child == this.UUID ) {
 				continue;
 			}
@@ -65,9 +71,8 @@ export default class ObjectModule extends TransformModule {
 
 	removeChildren ( children, sync = false ) {
 		const removedChildren = [ ];
+
 		for ( const child of children ) {
-			//console.log( child );
-			//const module = this.registry.getModule( child );
 			const module = this.registry.getModule( child );
 			if ( module && this.#children.has( child ) ) {
 				module._parent = rootUUID; 
@@ -76,10 +81,10 @@ export default class ObjectModule extends TransformModule {
 			}
 		}
 
-		this.onChange( this.commands.addChildren, addedChildren );
+		this.onChange( this.commands.addChildren, removedChildren );
 		
 		if ( sync ) {
-			this.output( this.commands.addChildren, { children: addedChildren } );
+			this.output( this.commands.addChildren, { children: removedChildren } );
 		}
 	}
 
@@ -96,7 +101,11 @@ export default class ObjectModule extends TransformModule {
 	}
 
 	delete ( ) {
-		/// remove from parent's children
-		/// notify children to remove parent
+		if ( this.parent != rootUUID ) {
+			const parentModule = this.registry.getModule( this.parent );
+			parentModule.removeChildren( [ this.UUID ], true );
+		}
+
+		this.removeChildren( this.children, true );
 	}
 }
