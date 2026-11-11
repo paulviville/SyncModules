@@ -23,6 +23,7 @@ import PointLightModule from "../PointLightModule.js"
 import AmbientLightModule from "../AmbientLightModule.js"
 import SpotLightModule from "../SpotLightModule.js"
 import DirectionalLightModule from "../DirectionalLightModule.js"
+import ObjectModule from "../ObjectModule.js"
 
 const ModuleTypes = {
 	[ ModuleCore.type ]: ModuleCore,
@@ -51,7 +52,7 @@ const ModuleTypes = {
 	[ SpotLightModule.type ]: SpotLightModule,
 	[ DirectionalLightModule.type ]: DirectionalLightModule,
 
-
+	[ ObjectModule.type ]: ObjectModule,
 	/// add new module with key: [ module.type ]: module constructor
 };
 

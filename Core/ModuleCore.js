@@ -11,6 +11,8 @@ export default class ModuleCore {
 	#commandCallbacks = new Map( ); /// command name -> callback function
 	#changeCallbacks = new Map( );
 
+	#registry;
+
 	constructor ( UUID = crypto.randomUUID( ) ) {
 		// console.log( `ModuleCore - constructor - ${ UUID }` );
 
@@ -37,8 +39,16 @@ export default class ModuleCore {
 		return Object.freeze( this.constructor.commands );
 	}
 
+	get registry ( ) {
+		return this.#registry;
+	}
+
 	setOutputFn ( outputFn ) {
 		this.#outputFn = outputFn;
+	}
+
+	setRegistry ( registry ) {
+		this.#registry = registry;
 	}
 
 	input ( payload ) {

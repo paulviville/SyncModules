@@ -58,6 +58,7 @@ export default class ModulesRegistry extends ModuleCore {
 		const constructor = ModuleTypes[ type ] || ModuleCore;
 		const module = new constructor( UUID );
 		module.setOutputFn( this.#outputFn );
+		module.setRegistry( this );
 		this.#modules.set( module.UUID, module );
 
 		if ( sync ) {
