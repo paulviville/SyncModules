@@ -1,6 +1,6 @@
-import TransformModule from "./TransformModule.js";
+import ObjectModule from "./ObjectModule.js";
 
-export default class LightModule extends TransformModule {
+export default class LightModule extends ObjectModule {
 	static type = "LightModule";
 	static commands = {
 		...super.commands,
