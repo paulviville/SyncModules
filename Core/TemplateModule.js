@@ -71,4 +71,8 @@ export default class TemplateModule extends ModuleCore {
 		/// add new calls to set the state of new properties
 		this.templateMethod( state.templateProperty );
 	}
+
+	delete ( ) { 
+		/// stuff to delete cleanly your module
+	}
 }
