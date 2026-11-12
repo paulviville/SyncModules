@@ -81,10 +81,11 @@ export default class ObjectModule extends TransformModule {
 			}
 		}
 
-		this.onChange( this.commands.addChildren, removedChildren );
+		console.log( removedChildren )
+		this.onChange( this.commands.removeChildren, removedChildren );
 		
 		if ( sync ) {
-			this.output( this.commands.addChildren, { children: removedChildren } );
+			this.output( this.commands.removeChildren, { children: removedChildren } );
 		}
 	}
 
@@ -106,6 +107,8 @@ export default class ObjectModule extends TransformModule {
 			parentModule.removeChildren( [ this.UUID ], true );
 		}
 
+		console.log( "delete")
+		console.log( this.children )
 		this.removeChildren( this.children, true );
 	}
 }
