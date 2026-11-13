@@ -5,6 +5,7 @@ const rootUUID = "00000000-0000-0000-0000-000000000000";
 
 export default class ObjectModule extends TransformModule {
 	static type = "ObjectModule";
+	
 	static commands = {
 		...super.commands,
 		addChildren: "ADD_CHILDREN",
@@ -107,8 +108,6 @@ export default class ObjectModule extends TransformModule {
 			parentModule.removeChildren( [ this.UUID ], true );
 		}
 
-		console.log( "delete")
-		console.log( this.children )
 		this.removeChildren( this.children, true );
 	}
 }

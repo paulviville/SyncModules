@@ -12,7 +12,6 @@ export default class PointLightModule extends LightModule {
 	#decay = 2;
 
 	constructor ( UUID ) {
-		console.log( "PointLightModule - constructor" );
 		super( UUID );
 
 		this.setOnCommand( this.commands.setDistance, 

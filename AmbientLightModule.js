@@ -7,7 +7,6 @@ export default class AmbientLightModule extends LightModule {
 	}
 
 	constructor ( UUID ) {
-		console.log( "AmbientLightModule - constructor" );
 		super( UUID );
 	}
 }

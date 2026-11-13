@@ -3,9 +3,11 @@ export default class ModuleCore {
 	static commands = {
 		any: "ANY",
 		setState: "SET_STATE",
+		setLabel: "SET_LABEL",
 	}
 
 	#UUID;
+	#label;
 
 	#outputFn;
 	#commandCallbacks = new Map( ); /// command name -> callback function
@@ -13,18 +15,18 @@ export default class ModuleCore {
 
 	#registry;
 
-	constructor ( UUID = crypto.randomUUID( ) ) {
-		// console.log( `ModuleCore - constructor - ${ UUID }` );
-
+	constructor ( UUID = crypto.randomUUID( ), label ) {
 		this.#UUID = UUID;
+
+		this.#label = label ?? this.type;
 
 		this.setOnCommand( this.commands.setState, ( stateData ) => {
 			this.setState( stateData );
 		} );
 
-		// this.setOnChange( this.commands.any, ( data ) => {
-		// 	console.log( data )
-		// } );
+		this.setOnCommand( this.commands.setLabel, ( { label } ) => {
+			this.setLabel( label );
+		} );
 	}
 
 	get UUID ( ) {
@@ -111,14 +113,28 @@ export default class ModuleCore {
 		}
 	}
 
+	get label ( ) {
+		return this.#label;
+	}
+
+	setLabel ( label, sync = false ) {
+		this.#label = label;
+
+		this.onChange( this.commands.setLabel, this.label );
+
+		if ( sync ) {
+			this.output( this.commands.setLabel, { label: this.label } );
+		}
+	}
+
 	/// overload in children
 	getState ( ) {
-		return { };
+		return { label: this.#label };
 	}
 
 	/// overload in children
 	setState ( state ) {
-		return;
+		this.setLabel( state.label );
 	}
 
 	outputState ( ) {

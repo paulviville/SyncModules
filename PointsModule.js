@@ -14,8 +14,6 @@ export default class PointsModule extends ModuleCore {
 	/*	point = { UUID : uuid, position: [x, y, z] } */
 
 	constructor ( UUID ) {
-		console.log( `PointsModule - constructor` );
-
 		super( UUID );
 
 		this.setOnCommand( this.commands.addPoints, 
