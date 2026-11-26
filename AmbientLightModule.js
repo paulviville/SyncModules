@@ -1,3 +1,4 @@
+import { ModuleTypesWIP } from "./Core/ModuleTypesWIP.js";
 import LightModule from "./LightModule.js";
 
 export default class AmbientLightModule extends LightModule {
@@ -7,7 +8,8 @@ export default class AmbientLightModule extends LightModule {
 	}
 
 	constructor ( UUID ) {
-		console.log( "AmbientLightModule - constructor" );
 		super( UUID );
 	}
 }
+
+ModuleTypesWIP.register( AmbientLightModule );

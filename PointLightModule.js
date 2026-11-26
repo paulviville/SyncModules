@@ -62,7 +62,7 @@ export default class PointLightModule extends LightModule {
 
 	setState ( state ) {
 		super.setState( state );
-		this.setDistance( state.color );
+		this.setDistance( state.distance );
 		this.setDecay( state.decay );
 	}
 }

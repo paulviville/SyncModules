@@ -51,10 +51,14 @@ export default class TransformModule extends ModuleCore {
 	}
 
 	getState ( ) {
-		return { transform: this.transform };
+		return { 
+			...super.getState( ),
+			transform: this.transform,
+		};
 	}
 
 	setState ( state ) {
+		super.setState( state );
 		this.updateTransform( state.transform );
 	}
 }

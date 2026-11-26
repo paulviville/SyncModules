@@ -1,6 +1,7 @@
 import ModuleCore from "./ModuleCore.js";
 import ModuleTypes from "./ModuleTypes.js";
 
+import { ModuleTypesWIP } from "./ModuleTypesWIP.js";
 
 export default class ModulesRegistry extends ModuleCore {
 	static type = "ModulesRegistry";
@@ -58,13 +59,15 @@ export default class ModulesRegistry extends ModuleCore {
 		const constructor = ModuleTypes[ type ] || ModuleCore;
 		const module = new constructor( UUID );
 		module.setOutputFn( this.#outputFn );
+		module.setRegistry( this );
+
 		this.#modules.set( module.UUID, module );
 
 		if ( sync ) {
-			this.output( this.commands.addModule, { type, UUID } );
+			this.output( this.commands.addModule, { type, UUID: module.UUID } );
 		}
 
-		this.onChange( this.commands.addModule, { type, UUID } );
+		this.onChange( this.commands.addModule, { type, UUID: module.UUID } );
 		
 		return module;
 	}
