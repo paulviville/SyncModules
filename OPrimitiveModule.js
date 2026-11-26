@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ObjectModule from "./ObjectModule.js";
 
 export default class OPrimitiveModule extends ObjectModule {
@@ -80,3 +81,5 @@ export default class OPrimitiveModule extends ObjectModule {
 		this.setColor( state.color );
 	}
 }
+
+ModuleTypes.register( OPrimitiveModule );

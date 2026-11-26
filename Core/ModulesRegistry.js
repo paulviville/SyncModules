@@ -1,7 +1,7 @@
 import ModuleCore from "./ModuleCore.js";
 import ModuleTypes from "./ModuleTypes.js";
 
-import { ModuleTypesWIP } from "./ModuleTypesWIP.js";
+// import { ModuleTypesWIP } from "./ModuleTypesWIP.js";
 
 export default class ModulesRegistry extends ModuleCore {
 	static type = "ModulesRegistry";
@@ -56,7 +56,12 @@ export default class ModulesRegistry extends ModuleCore {
 			return;
 		}
 
-		const constructor = ModuleTypes[ type ] || ModuleCore;
+		const constructor = ModuleTypes.get( type );
+		if ( constructor === undefined ) {
+			console.warn( `ModuleRegistry.addModule - unknown type ${ type }` );
+			return;
+		}
+
 		const module = new constructor( UUID );
 		module.setOutputFn( this.#outputFn );
 		module.setRegistry( this );

@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import PointsModule from "./PointsModule.js";
 
 export default class BezierPatchModule extends PointsModule {
@@ -35,3 +36,5 @@ export default class BezierPatchModule extends PointsModule {
 
 	}
 }
+
+ModuleTypes.register( BezierPatchModule );

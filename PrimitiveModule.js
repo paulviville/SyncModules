@@ -1,4 +1,4 @@
-import ModuleCore from "./Core/ModuleCore.js";
+import ModuleTypes from "./Core/ModuleTypes.js";
 import TransformModule from "./TransformModule.js";
 
 export default class PrimitiveModule extends TransformModule {
@@ -83,3 +83,5 @@ export default class PrimitiveModule extends TransformModule {
 		this.updateColor( state.color );
 	}
 }
+
+ModuleTypes.register( PrimitiveModule );

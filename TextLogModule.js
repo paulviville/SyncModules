@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class TextLogModule extends ModuleCore {
@@ -121,3 +122,5 @@ export default class TextLogModule extends ModuleCore {
 		}
 	}
 }
+
+ModuleTypes.register( TextLogModule );

@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import TransformModule from "./TransformModule.js";
 
 
@@ -48,3 +49,5 @@ export default class ImageModule extends TransformModule {
 		this.setImage( state.image );
 	}
 }
+
+ModuleTypes.register( ImageModule );

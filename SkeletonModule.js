@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class SkeletonModule extends ModuleCore {
@@ -148,3 +149,5 @@ export default class SkeletonModule extends ModuleCore {
 		this.setTransforms( state.boneTransforms );
 	}
 }
+
+ModuleTypes.register( SkeletonModule );

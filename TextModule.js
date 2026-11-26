@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class TextModule extends ModuleCore {
@@ -43,3 +44,5 @@ export default class TextModule extends ModuleCore {
 		this.updateText( state.text );
 	}
 }
+
+ModuleTypes.register( TextModule );

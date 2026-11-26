@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class FileModule extends ModuleCore {
@@ -44,3 +45,5 @@ export default class FileModule extends ModuleCore {
 		this.updateFile( state.file );
 	}
 }
+
+ModuleTypes.register( FileModule );

@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ImageModule from "./ImageModule.js";
 
 
@@ -25,3 +26,5 @@ export default class Image360Module extends ImageModule {
 		super.setState( state );
 	}
 }
+
+ModuleTypes.register( Image360Module );

@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class TransformModule extends ModuleCore {
@@ -62,3 +63,5 @@ export default class TransformModule extends ModuleCore {
 		this.updateTransform( state.transform );
 	}
 }
+
+ModuleTypes.register( TransformModule );

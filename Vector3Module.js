@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class Vector3Module extends ModuleCore {
@@ -38,3 +39,5 @@ export default class Vector3Module extends ModuleCore {
 		this.updateVector( state.vector );
 	}
 }
+
+ModuleTypes.register( Vector3Module );

@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ObjectModule from "./ObjectModule.js";
 
 export default class LightModule extends ObjectModule {
@@ -66,3 +67,6 @@ export default class LightModule extends ObjectModule {
 		this.setIntensity( state.intensity );
 	}
 }
+
+/// Abstract type, skip register
+// ModuleTypes.register( LightModule );

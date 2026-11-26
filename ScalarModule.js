@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class ScalarModule extends ModuleCore {
@@ -42,3 +43,5 @@ export default class ScalarModule extends ModuleCore {
 		this.updateValue( state.value );
 	}
 }
+
+ModuleTypes.register( ScalarModule );

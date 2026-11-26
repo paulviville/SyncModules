@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class LineModule extends ModuleCore {
@@ -54,3 +55,5 @@ export default class LineModule extends ModuleCore {
 		this.updateLine( state.line );
 	}
 }
+
+ModuleTypes.register( LineModule );

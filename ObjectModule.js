@@ -1,4 +1,4 @@
-import ModuleCore from "./Core/ModuleCore.js";
+import ModuleTypes from "./Core/ModuleTypes.js";
 import TransformModule from "./TransformModule.js";
 
 const rootUUID = "00000000-0000-0000-0000-000000000000";
@@ -111,3 +111,5 @@ export default class ObjectModule extends TransformModule {
 		this.removeChildren( this.children, true );
 	}
 }
+
+ModuleTypes.register( ObjectModule );

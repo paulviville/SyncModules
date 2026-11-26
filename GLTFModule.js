@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import FileModule from "./FileModule.js";
 
 const ROOT_UUID = "00000000-0000-0000-0000-000000000000";
@@ -300,3 +301,5 @@ export class SceneGraph {
 		return locked;
 	}
 }
+
+ModuleTypes.register( GLTFModule );

@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class SwitchModule extends ModuleCore {
@@ -41,3 +42,5 @@ export default class SwitchModule extends ModuleCore {
 		this.toggle( state.value );
 	}
 }
+
+ModuleTypes.register( SwitchModule );

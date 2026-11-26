@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import LightModule from "./LightModule.js";
 
 export default class DirectionalLightModule extends LightModule {
@@ -42,3 +43,5 @@ export default class DirectionalLightModule extends LightModule {
 		this.setTarget( state.target );
 	}
 }
+
+ModuleTypes.register( DirectionalLightModule );

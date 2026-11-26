@@ -1,4 +1,4 @@
-import { ModuleTypesWIP } from "./Core/ModuleTypesWIP.js";
+import ModuleTypes from "./Core/ModuleTypes.js";
 import LightModule from "./LightModule.js";
 
 export default class AmbientLightModule extends LightModule {
@@ -12,4 +12,4 @@ export default class AmbientLightModule extends LightModule {
 	}
 }
 
-ModuleTypesWIP.register( AmbientLightModule );
+ModuleTypes.register( AmbientLightModule );

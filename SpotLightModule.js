@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import PointLightModule from "./PointLightModule.js";
 
 export default class SpotLightModule extends PointLightModule {
@@ -68,3 +69,5 @@ export default class SpotLightModule extends PointLightModule {
 		this.setAngle( state.angle );
 	}
 }
+
+ModuleTypes.register( SpotLightModule );

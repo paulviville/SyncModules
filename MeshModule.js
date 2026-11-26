@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ObjectModule from "./ObjectModule.js";
 
 export default class MeshModule extends ObjectModule {
@@ -53,3 +54,5 @@ export default class MeshModule extends ObjectModule {
 		this.setData( state.data );
 	}
 }
+
+ModuleTypes.register( MeshModule );

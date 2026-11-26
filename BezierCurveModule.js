@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import PointsModule from "./PointsModule.js";
 
 export default class BezierCurveModule extends PointsModule {
@@ -12,3 +13,5 @@ export default class BezierCurveModule extends PointsModule {
 		super( UUID );
 	}
 }
+
+ModuleTypes.register( BezierCurveModule );

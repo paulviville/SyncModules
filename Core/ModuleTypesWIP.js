@@ -1,34 +1,34 @@
-import ModuleCore from "./ModuleCore.js";
-/// future work:
-const types = new Map( );
+// import ModuleCore from "./ModuleCore.js";
+// /// future work:
+// const types = new Map( );
 
-export const ModuleTypesWIP = {
-	register ( Module ) {
-		const type = Module.type;
+// export const ModuleTypesWIP = {
+// 	register ( Module ) {
+// 		const type = Module.type;
 
-		if ( types.get( type ) ) {
-			throw new Error ( `ModuleTypes.register: ${ type } is already registered` );
-		}
+// 		if ( types.get( type ) ) {
+// 			throw new Error ( `ModuleTypes.register: ${ type } is already registered` );
+// 		}
 
-		types.set( type, Module );
-		console.warn( `registered ${ type }` );
+// 		types.set( type, Module );
+// 		console.warn( `registered ${ type }` );
 
-		return Module;
-	},
+// 		return Module;
+// 	},
 
-	get ( type ) {
-		return types.get( type );
-	},
+// 	get ( type ) {
+// 		return types.get( type );
+// 	},
 
-	has ( type ) {
-		return types.has( type );
-	},
+// 	has ( type ) {
+// 		return types.has( type );
+// 	},
 
-	get list ( ) {
-		return [ ...types.keys( ) ];
-	}
-}
+// 	get list ( ) {
+// 		return [ ...types.keys( ) ];
+// 	}
+// }
 
-ModuleTypesWIP.register( ModuleCore );
+// ModuleTypes.register( ModuleCore );
 
-// export ModuleTypesWIP;
+// // export ModuleTypesWIP;

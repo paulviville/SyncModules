@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import LightModule from "./LightModule.js";
 
 export default class PointLightModule extends LightModule {
@@ -65,3 +66,5 @@ export default class PointLightModule extends LightModule {
 		this.setDecay( state.decay );
 	}
 }
+
+ModuleTypes.register( PointLightModule );

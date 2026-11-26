@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class TriggerModule extends ModuleCore {
@@ -24,3 +25,5 @@ export default class TriggerModule extends ModuleCore {
 		}
 	}
 }
+
+ModuleTypes.register( TriggerModule );

@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import TransformModule from "./TransformModule.js";
 
 
@@ -107,3 +108,5 @@ export default class DisplaysModule extends TransformModule {
 		}
 	}
 }
+
+ModuleTypes.register( DisplaysModule );

@@ -1,3 +1,4 @@
+import ModuleTypes from "./Core/ModuleTypes.js";
 import ModuleCore from "./Core/ModuleCore.js";
 
 export default class PointsModule extends ModuleCore {
@@ -115,3 +116,5 @@ export default class PointsModule extends ModuleCore {
 		this.addPoints( state.points );
 	}
 }
+
+ModuleTypes.register( PointsModule );
