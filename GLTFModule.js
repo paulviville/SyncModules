@@ -133,8 +133,9 @@ export default class GLTFModule extends FileModule {
 
 	setState ( state ) {
 		super.setState( state );
-        this.setNodesMap( state.nodesMap, false )
-        this.setNodes( state.nodes, false )
+        this.setNodesMap( state.nodesMap, false );
+        this.setNodes( state.nodes, false );
+        this.setLock( state.lock, false );
 	}
 }
 
