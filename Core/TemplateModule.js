@@ -9,6 +9,7 @@
 	Add the new type to ModuleTypes to be callable by ModuleRegistry
 */
 
+import ModuleTypes from "./ModuleTypes.js";
 import ModuleCore from "./ModuleCore.js";
 
 /// create new class and inherit from ModuleCore, or child class of ModuleCore
@@ -76,3 +77,7 @@ export default class TemplateModule extends ModuleCore {
 		/// stuff to delete cleanly your module
 	}
 }
+
+/// register the new template in the ModuleTypes
+// ModuleTypes.register( TemplateModule );
+/// commented to not add the fake module in types
